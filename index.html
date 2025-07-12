@@ -437,13 +437,13 @@ if (role === 'user') {
                 const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                     method: "POST",
                     headers: {
-                        "Authorization": "Bearer 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",
+                        "Authorization": "Bearer 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",
                         "HTTP-Referer": window.location.href,
                         "X-Title": "Zenova AI",
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        model: "deepseek/deepseek-r1:free",
+                        model: "google/gemma-3-27b-it:free",
                         messages: messages,
                         stream: true
                     })
