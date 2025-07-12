@@ -6,11 +6,14 @@
     <title>Zenova AI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="stytle.css">
+<link rel="stylesheet" href="stytle.css">
 </head>
 <body>
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
+        <!-- Sidebar Toggle Button -->
+<button id="sidebarToggle" class="sidebar-toggle">&#9776;</button>
+
         <div class="sidebar-header">
             <button class="new-chat-btn" id="newChatBtn">
                 <i class="fas fa-plus"></i>
@@ -42,6 +45,36 @@
             <button class="end-chat-btn" id="endChatBtn">End Chat</button>
         </div>
     </div>
+<script>
+  const sidebartoglle = document.querySelector('.sidebar');
+  const toggleBtn = document.getElementById('sidebarToggle');
+
+  toggleBtn.addEventListener('click', () => {
+    sidebartoglle.classList.toggle('open');
+  });
+
+  // Close sidebar if clicked outside (optional)
+  document.addEventListener('click', (e) => {
+    if (!sidebartoglle.contains(e.target) && !toggleBtn.contains(e.target)) {
+      sidebartoglle.classList.remove('open');
+    }
+  });
+
+  // Touch swipe from left to open sidebar (mobile only)
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+  document.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    if (touchStartX < 50 && touchEndX > 100) {
+      sidebartoglle.classList.add('open');
+    }
+    if (touchStartX > 200 && touchEndX < 150) {
+      sidebartoglle.classList.remove('open');
+    }
+  });
+</script>
 
     <script>
         // DOM Elements
